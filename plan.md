@@ -355,7 +355,7 @@ Current MakeYou integration:
 
 - \`next.config.js\` loads \`@kastrick/nextjs-engine/plugin\`.
 - \`@kastrick/nextjs-engine\` is transpiled by Next.js.
-- \`EngineImage\` is used for video thumbnails where appropriate.
+- \`EngineImage\`, \`EngineDialog\`, and \`EnginePopover\` are used from the Gen 3 package-root React API for thumbnails, URL intake, and the preview account menu.
 - The official YouTube player remains an iframe in official mode.
 - \`EngineVideo\` is reserved for native supported media sources; it is not a YouTube iframe substitute.
 
@@ -375,7 +375,7 @@ Do not push MakeYou-specific changes into the Engine repository. Engine source c
 The following application pieces already exist and should be evolved rather than recreated without a reason:
 
 - \`app/page.tsx\`: server-rendered homepage entry and initial public popular-video data.
-- \`components/home/HomeExperience.tsx\`: client-side discovery experience, filters, search, URL import, and theme interaction.
+- \`components/home/HomeExperience.tsx\`: client-side discovery experience, YouTube-style navigation, filters, search, URL import, EngineImage thumbnails, EngineDialog URL intake, and EnginePopover preview account menu.
 - \`src/lib/youtube.ts\`: server-side YouTube Data API access and video normalization.
 - \`app/api/videos/route.ts\`: same-origin discovery/search endpoint.
 - \`src/lib/youtube-url.ts\`: YouTube URL and Android intent parsing.
