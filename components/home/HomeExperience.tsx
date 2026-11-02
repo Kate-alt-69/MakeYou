@@ -1,6 +1,6 @@
 "use client";
 
-import { EngineImage } from "@kastrick/nextjs-engine/engine/components/EngineImage";
+import Image from "next/image";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { FormEvent, ReactNode } from "react";
 import { parseYouTubeUrl, toWatchPath } from "@/lib/youtube-url";
@@ -48,7 +48,7 @@ function VideoCard({ video }: { video: YouTubeVideo }) {
     <a className="video-card" href={`/watch?v=${encodeURIComponent(video.id)}`}>
       <div className="thumbnail">
         {thumbnail ? (
-          <EngineImage src={thumbnail} alt="" width={480} height={270} aspectRatio="16/9" qualityPreset="performance" unoptimized />
+          <Image src={thumbnail} alt="" width={480} height={270} sizes="(max-width: 760px) 100vw, (max-width: 1180px) 50vw, 33vw" quality={65} unoptimized />
         ) : <div className="thumbnail-fallback"><Icon name="play" size={28}/></div>}
         <span className="play-overlay"><Icon name="play" size={22}/></span>
       </div>
