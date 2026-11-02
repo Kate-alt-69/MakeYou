@@ -23,11 +23,11 @@ export function parseYouTubeUrl(input: string): ParsedYouTubeUrl | null {
   if (!raw || raw.length > 2048) return null;
 
   if (raw.startsWith("intent://")) {
-    const match = raw.match(/scheme=https;end/i);
-    if (!match) return null;
+    const suffix = raw.split("#Intent;")[1] || "";
+    if (!/(?:^|;)scheme=https(?:;|$)/i.test(suffix) || !suffix.split(";").includes("end")) return null;
     const embedded = raw.match(/^intent:\/\/([^#]+)#Intent;/i);
     if (!embedded) return null;
-    const url = parseHttpUrl(\`https://\${embedded[1].replace(/^www\./i, "www.")}\`);
+    const url = parseHttpUrl(\`https://\${embedded[1]}\`);
     return url ? parseYouTubeUrl(url.toString()) : null;
   }
 
