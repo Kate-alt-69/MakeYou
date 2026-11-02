@@ -23,7 +23,7 @@ export function isYouTubeApiConfigured() {
 export async function getPopularVideos(categoryId?: string): Promise<YouTubeVideo[]> {
   const key = apiKey();
   if (!key) return [];
-  const url = new URL(\`\${API_BASE}/videos\`);
+  const url = new URL(`${API_BASE}/videos`);
   url.searchParams.set("part", "snippet,contentDetails,statistics");
   url.searchParams.set("chart", "mostPopular");
   url.searchParams.set("regionCode", process.env.YOUTUBE_REGION_CODE || "IN");
@@ -53,7 +53,7 @@ export async function getPopularVideos(categoryId?: string): Promise<YouTubeVide
 export async function searchVideos(query: string): Promise<YouTubeVideo[]> {
   const key = apiKey();
   if (!key) throw new Error("Add YOUTUBE_DATA_API_KEY to enable search.");
-  const url = new URL(\`\${API_BASE}/search\`);
+  const url = new URL(`${API_BASE}/search`);
   url.searchParams.set("part", "snippet");
   url.searchParams.set("type", "video");
   url.searchParams.set("maxResults", "24");
