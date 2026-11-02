@@ -1,6 +1,7 @@
 "use client";
 
-import { EngineDialog, EngineImage, EnginePopover } from "@kastrick/nextjs-engine";
+import { EngineImage } from "@kastrick/nextjs-engine/engine/components/EngineImage";
+import { EngineDialog, EnginePopover } from "@kastrick/nextjs-engine/engine/components/EngineOverlay";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { FormEvent, ReactNode } from "react";
 import { parseYouTubeUrl, toWatchPath } from "@/lib/youtube-url";
