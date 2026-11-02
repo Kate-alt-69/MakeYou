@@ -27,7 +27,7 @@ export function parseYouTubeUrl(input: string): ParsedYouTubeUrl | null {
     if (!/(?:^|;)scheme=https(?:;|$)/i.test(suffix) || !suffix.split(";").includes("end")) return null;
     const embedded = raw.match(/^intent:\/\/([^#]+)#Intent;/i);
     if (!embedded) return null;
-    const url = parseHttpUrl(\`https://\${embedded[1]}\`);
+    const url = parseHttpUrl(`https://${embedded[1]}`);
     return url ? parseYouTubeUrl(url.toString()) : null;
   }
 
@@ -37,7 +37,7 @@ export function parseYouTubeUrl(input: string): ParsedYouTubeUrl | null {
     return id && VIDEO_ID.test(id) ? { videoId: id } : null;
   }
 
-  const url = parseHttpUrl(raw.includes("://") ? raw : \`https://\${raw}\`);
+  const url = parseHttpUrl(raw.includes("://") ? raw : `https://${raw}`);
   if (!url) return null;
 
   const playlistId = url.searchParams.get("list") || undefined;
@@ -60,5 +60,5 @@ export function toWatchPath(parsed: ParsedYouTubeUrl) {
   const params = new URLSearchParams();
   if (parsed.videoId) params.set("v", parsed.videoId);
   if (parsed.playlistId) params.set("list", parsed.playlistId);
-  return \`/watch?\${params.toString()}\`;
+  return `/watch?${params.toString()}`;
 }
