@@ -7,7 +7,7 @@ import { parseYouTubeUrl, toWatchPath } from "@/lib/youtube-url";
 import type { YouTubeVideo } from "@/lib/youtube";
 
 const categories = [
-  { label: "For you", id: "" },
+  { label: "Popular", id: "" },
   { label: "Music", id: "10" },
   { label: "Gaming", id: "20" },
   { label: "Technology", id: "28" },
@@ -136,7 +136,7 @@ export function HomeExperience({ initialVideos, initialConfigured, initialMessag
     window.location.assign(toWatchPath(parsed));
   };
 
-  const heading = useMemo(() => activeQuery ? \`Results for “\${activeQuery}”\` : categories.find((item) => item.id === category)?.label === "For you" ? "Popular right now" : \`Popular in \${categories.find((item) => item.id === category)?.label}\`, [activeQuery, category]);
+  const heading = useMemo(() => activeQuery ? \`Results for “\${activeQuery}”\` : categories.find((item) => item.id === category)?.label === "Popular" ? "Popular right now" : \`Popular in \${categories.find((item) => item.id === category)?.label}\`, [activeQuery, category]);
 
   return (
     <div className="app-shell">
