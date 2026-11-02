@@ -1,7 +1,7 @@
 "use client";
 
 import { EngineImage } from "@kastrick/nextjs-engine";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { FormEvent, ReactNode } from "react";
 import { parseYouTubeUrl, toWatchPath } from "@/lib/youtube-url";
 import type { YouTubeVideo } from "@/lib/youtube";
@@ -65,14 +65,15 @@ function VideoCard({ video }: { video: YouTubeVideo }) {
   );
 }
 
-export function HomeExperience() {
+export function HomeExperience({ initialVideos, initialConfigured, initialMessage = "" }: { initialVideos: YouTubeVideo[]; initialConfigured: boolean; initialMessage?: string }) {
+  const firstLoad = useRef(true);
   const [category, setCategory] = useState("");
   const [query, setQuery] = useState("");
   const [activeQuery, setActiveQuery] = useState("");
-  const [videos, setVideos] = useState<YouTubeVideo[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [configured, setConfigured] = useState(true);
-  const [message, setMessage] = useState("");
+  const [videos, setVideos] = useState<YouTubeVideo[]>(initialVideos);
+  const [loading, setLoading] = useState(false);
+  const [configured, setConfigured] = useState(initialConfigured);
+  const [message, setMessage] = useState(initialMessage);
   const [dark, setDark] = useState(true);
   const [importOpen, setImportOpen] = useState(false);
   const [importValue, setImportValue] = useState("");
@@ -110,6 +111,10 @@ export function HomeExperience() {
   }, []);
 
   useEffect(() => {
+    if (firstLoad.current) {
+      firstLoad.current = false;
+      return;
+    }
     const controller = new AbortController();
     void loadVideos(activeQuery, category, controller.signal);
     return () => controller.abort();
