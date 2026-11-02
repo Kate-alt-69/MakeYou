@@ -15,7 +15,13 @@
     "incremental": true,
     "plugins": [{ "name": "next" }],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@kastrick/nextjs-engine/engine/components/EngineImage": [
+        "./node_modules/@kastrick/nextjs-engine/engine/components/EngineImage.tsx"
+      ],
+      "@kastrick/nextjs-engine/engine/components/EngineOverlay": [
+        "./node_modules/@kastrick/nextjs-engine/engine/components/EngineOverlay/index.ts"
+      ]
     }
   },
   "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx"],
