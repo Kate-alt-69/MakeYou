@@ -1,11 +1,12 @@
-import { HomeExperience } from "@/components/home/HomeExperience";
+import { HomeExperience } from "../components/home/HomeExperience";
 import { getPopularVideos, isYouTubeApiConfigured } from "@/lib/youtube";
+import type { YouTubeVideo } from "@/lib/youtube";
 
 export const revalidate = 300;
 
 export default async function HomePage() {
   const configured = isYouTubeApiConfigured();
-  let initialVideos = [];
+  let initialVideos: YouTubeVideo[] = [];
   let initialMessage = "";
 
   if (configured) {
