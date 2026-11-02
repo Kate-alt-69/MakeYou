@@ -1,0 +1,26 @@
+name: MakeYou CodeQL configuration
+
+# Analyze only first-party application and configuration source.
+# Dependencies (including @kastrick/nextjs-engine under node_modules) are not
+# repository-owned source and are explicitly excluded.
+paths:
+  - app
+  - components
+  - src
+  - next.config.js
+
+paths-ignore:
+  - node_modules/**
+  - '**/node_modules/**'
+  - .next/**
+  - '**/.next/**'
+  - coverage/**
+  - '**/coverage/**'
+  - dist/**
+  - '**/dist/**'
+  - out/**
+  - '**/out/**'
+  - build/**
+  - '**/build/**'
+  - '**/*.generated.*'
+  - '**/*.min.js'
