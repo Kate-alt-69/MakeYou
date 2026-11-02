@@ -321,7 +321,7 @@ Principles:
 - Keep interactivity in focused client components.
 - Do not mount video players in discovery grids.
 - Load thumbnails lazily and reserve their aspect ratio.
-- Use EngineImage for appropriate image work and preserve a native fallback.
+- Use Next.js Image for thumbnail cards with lazy loading and reserved dimensions. Keep the image layer replaceable so MakeYou can adopt an Engine image entry point once the package exposes a browser-safe import.
 - Keep search and provider requests bounded; debounce only where it improves UX and does not waste quota.
 - Avoid unnecessary polling, large client-side dependencies, and animation loops.
 - Use system font stacks unless a downloaded font materially improves the result.
