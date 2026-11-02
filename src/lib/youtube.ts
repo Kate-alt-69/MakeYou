@@ -1,3 +1,5 @@
+export type YouTubeThumbnail = { url: string; width?: number; height?: number };
+
 export type YouTubeVideo = {
   id: string;
   title: string;
@@ -5,7 +7,7 @@ export type YouTubeVideo = {
   channelTitle: string;
   channelId: string;
   publishedAt: string;
-  thumbnails: { high?: string; medium?: string; default?: string };
+  thumbnails: { high?: YouTubeThumbnail; medium?: YouTubeThumbnail; default?: YouTubeThumbnail };
   duration?: string;
   viewCount?: string;
 };
