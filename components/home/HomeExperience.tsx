@@ -76,22 +76,19 @@ function VideoCard({ video }: { video: YouTubeVideo }) {
   return (
     <article className="video-card">
       <a className="thumbnail-link" href={"/watch?v=" + encodeURIComponent(video.id)} aria-label={"Watch " + video.title}>
-        <div className="thumbnail">
-          {thumbnail ? (
-            <EngineImage
-              src={thumbnail}
-              alt=""
-              width={480}
-              height={270}
-              qualityPreset="performance"
-              loading="lazy"
-              unoptimized
-              rounded={false}
-              className="thumbnail-engine-image"
-            />
-          ) : <div className="thumbnail-fallback"><Icon name="play" size={26}/></div>}
-          <span className="video-duration" aria-hidden="true"> </span>
-        </div>
+        {thumbnail ? (
+          <EngineImage
+            src={thumbnail}
+            alt=""
+            width={480}
+            height={270}
+            qualityPreset="performance"
+            loading="lazy"
+            unoptimized
+            rounded={false}
+            className="thumbnail"
+          />
+        ) : <div className="thumbnail thumbnail-fallback"><Icon name="play" size={26}/></div>}
       </a>
       <div className="video-meta">
         <div className="channel-avatar" aria-hidden="true">{video.channelTitle.slice(0, 1).toUpperCase()}</div>
