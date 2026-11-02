@@ -14,12 +14,12 @@ export default async function WatchPage({ searchParams }: Props) {
   const requestHeaders = await headers();
   const host = requestHeaders.get("x-forwarded-host") || requestHeaders.get("host") || "localhost:3000";
   const protocol = requestHeaders.get("x-forwarded-proto") || (host.startsWith("localhost") ? "http" : "https");
-  const origin = \`\${protocol}://\${host}\`;
+  const origin = `${protocol}://${host}`;
   const playerParams = new URLSearchParams({ enablejsapi: "1", origin, playsinline: "1", rel: "0" });
   if (list) playerParams.set("list", list);
   const embed = v
-    ? \`https://www.youtube.com/embed/\${encodeURIComponent(v)}?\${playerParams.toString()}\`
-    : \`https://www.youtube.com/embed/videoseries?\${playerParams.toString()}\`;
+    ? `https://www.youtube.com/embed/${encodeURIComponent(v)}?${playerParams.toString()}`
+    : `https://www.youtube.com/embed/videoseries?${playerParams.toString()}`;
 
   return (
     <main className="watch-page">
@@ -40,7 +40,7 @@ export default async function WatchPage({ searchParams }: Props) {
         </div>
         <div className="watch-info">
           <div><p className="eyebrow">NOW PLAYING</p><h1>{v ? "Enjoy your video." : "Your playlist is ready."}</h1><p>Playback is provided by the official YouTube player.</p></div>
-          <Link className="secondary-button" href={v ? \`https://www.youtube.com/watch?v=\${encodeURIComponent(v)}\` : \`https://www.youtube.com/playlist?list=\${encodeURIComponent(list!)}\`} target="_blank">Open on YouTube ↗</Link>
+          <Link className="secondary-button" href={v ? `https://www.youtube.com/watch?v=${encodeURIComponent(v)}` : `https://www.youtube.com/playlist?list=${encodeURIComponent(list!)}`} target="_blank">Open on YouTube ↗</Link>
         </div>
       </div>
       <p className="watch-disclaimer">MakeYou is an independent client. YouTube player controls, attribution, and advertisements remain provided by YouTube.</p>
