@@ -1,6 +1,6 @@
 "use client";
 
-import { EngineImage } from "@kastrick/nextjs-engine";
+import { EngineImage } from "@kastrick/nextjs-engine/engine/components/EngineImage";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { FormEvent, ReactNode } from "react";
 import { parseYouTubeUrl, toWatchPath } from "@/lib/youtube-url";
