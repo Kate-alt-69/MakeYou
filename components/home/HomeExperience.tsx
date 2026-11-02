@@ -45,7 +45,7 @@ function formatViews(value?: string) {
 function VideoCard({ video }: { video: YouTubeVideo }) {
   const thumbnail = video.thumbnails.high?.url || video.thumbnails.medium?.url || video.thumbnails.default?.url;
   return (
-    <a className="video-card" href={\`/watch?v=\${encodeURIComponent(video.id)}\`}>
+    <a className="video-card" href={`/watch?v=${encodeURIComponent(video.id)}`}>
       <div className="thumbnail">
         {thumbnail ? (
           <EngineImage src={thumbnail} alt="" width={480} height={270} aspectRatio="16/9" qualityPreset="performance" unoptimized />
@@ -96,7 +96,7 @@ export function HomeExperience({ initialVideos, initialConfigured, initialMessag
       const params = new URLSearchParams();
       if (search) params.set("q", search);
       if (!search && selectedCategory) params.set("category", selectedCategory);
-      const response = await fetch(\`/api/videos?\${params}\`, { signal });
+      const response = await fetch(`/api/videos?${params}`, { signal });
       const data = await response.json();
       setConfigured(data.configured !== false);
       setVideos(data.items || []);
@@ -136,11 +136,11 @@ export function HomeExperience({ initialVideos, initialConfigured, initialMessag
     window.location.assign(toWatchPath(parsed));
   };
 
-  const heading = useMemo(() => activeQuery ? \`Results for “\${activeQuery}”\` : categories.find((item) => item.id === category)?.label === "Popular" ? "Popular right now" : \`Popular in \${categories.find((item) => item.id === category)?.label}\`, [activeQuery, category]);
+  const heading = useMemo(() => activeQuery ? `Results for “${activeQuery}”` : categories.find((item) => item.id === category)?.label === "Popular" ? "Popular right now" : `Popular in ${categories.find((item) => item.id === category)?.label}`, [activeQuery, category]);
 
   return (
     <div className="app-shell">
-      <aside className={\`sidebar \${mobileMenu ? "sidebar-open" : ""}\`}>
+      <aside className={`sidebar ${mobileMenu ? "sidebar-open" : ""}`}>
         <a href="/" className="brand"><span className="brand-mark"><Icon name="play" size={18}/></span><span>MakeYou</span></a>
         <nav className="side-nav" aria-label="Main navigation">
           <a className="nav-item active" href="/"><Icon name="home"/> <span>Home</span></a>
