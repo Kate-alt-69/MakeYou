@@ -12,6 +12,7 @@ Requirements: Node.js 22 or newer and npm.
    npm install
 
    This downloads the Engine package tarball pinned to the latest verified main-3 source commit selected in plan.md. It does not install the older floating npm dist-tag.
+   The project-level `.npmrc` sets `allow-remote=root` for npm 12+: it permits this explicitly declared Engine tarball while continuing to block URL dependencies that are not listed directly in this project's `package.json`. It does not change your global npm configuration.
 3. Copy .env.example to .env.local.
 4. Add a YouTube Data API v3 key as YOUTUBE_DATA_API_KEY. Keep it server-side; do not rename it to a NEXT_PUBLIC_ variable.
 5. Start the development server:
